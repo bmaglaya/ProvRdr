@@ -13,7 +13,6 @@ with open(infile, newline='') as f:
 	reader = csv.reader(f)
 	of = open('outfile.txt', 'w')
 	for row in reader:
-		of.write(str(row))
-		of.write('\n')
+		of.write('{} \n'.format(str(row)))
 	of.close()
 f.close()
