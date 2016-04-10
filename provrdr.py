@@ -7,7 +7,9 @@ import argparse
 import sys
 import csv
 
-
+#
+# Parse command line arguments
+#
 parser = argparse.ArgumentParser(description="Process ProvidentCU bank statements.")
 parser.add_argument("infile", 
 	type=str, 
@@ -23,28 +25,26 @@ args = parser.parse_args()
 infile = args.infile
 outfile = args.outfile
 
-strarr = []
+#
+# Read .csv file 
+#
+data = []
+
 try:
 	with open(infile, newline='') as f:
 		reader = csv.reader(f)	
 		for row in reader:
-			strarr.append(row)
+			data.append(list(filter(None, row)))
 	f.close()
 except IOError:
 	sys.exit('Could not read file: {}\n'.format(infile))
 
 
-print(strarr)
-"""
-list2 = []
-for r in strarr:
-	list2.append(list(filter(None, r)))
-print(list2)
+print(data)
 
-"""
 of = open(outfile, 'w')
-of.write(str(strarr))
-#for rw in list2:
-#	of.write('{} \n'.format(rw))
+#of.write(str(data))
+for rw in data:
+	of.write('{} \n'.format(rw))
 of.close
 
