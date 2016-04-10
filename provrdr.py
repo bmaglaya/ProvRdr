@@ -2,26 +2,28 @@
 provrdr.py
 
 """
- 
+
+import argparse
 import sys
 import csv
 
-def usage_exit(args):
-	numargs = len(args)
-	if numargs < 2 or numargs > 3:
-		sys.exit("usage: provrdr.py infile outfile")
 
-
-usage_exit(sys.argv)
+parser = argparse.ArgumentParser(description="Process ProvidentCU bank statements.")
+parser.add_argument("infile", 
+					type=str, 
+					default=sys.stdin,
+					help=".cvs file to be read in")
+parser.add_argument("outfile", 
+					nargs='?', 
+					type=str, 
+					default='outfile.txt',
+					help="optional output file")
+args = parser.parse_args()
 	
-infile = sys.argv[1]
-outfile = 'outfile.txt'
-
-if len(sys.argv) == 3:
-	outfile = sys.argv[2]
+infile = args.infile
+outfile = args.outfile
 
 strarr = []
-
 try:
 	with open(infile, newline='') as f:
 		reader = csv.reader(f)	
@@ -30,7 +32,6 @@ try:
 	f.close()
 except IOError:
 	sys.exit('Could not read file: {}\n'.format(infile))
-	
 
 
 print(strarr)
