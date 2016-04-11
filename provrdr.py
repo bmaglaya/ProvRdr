@@ -1,6 +1,9 @@
 """
 provrdr.py
 
+See UNLICENSE.txt for license 
+at https://github.com/bmaglaya/ProvRdr
+
 """
 
 import argparse
