@@ -6,10 +6,11 @@ provrdr.py
 import argparse
 import sys
 import csv
+import re
 
-#
-# Parse command line arguments
-#
+"""
+Parse command line arguments
+"""
 parser = argparse.ArgumentParser(description="Process ProvidentCU bank statements.")
 parser.add_argument("infile", 
 	type=str, 
@@ -25,9 +26,9 @@ args = parser.parse_args()
 infile = args.infile
 outfile = args.outfile
 
-#
-# Read .csv file 
-#
+"""
+Read .csv file 
+"""
 data = []
 
 try:
@@ -39,13 +40,18 @@ try:
 except IOError:
 	sys.exit('Could not read file: {}\n'.format(infile))
 
-
-print(data)
-
+"""
+Process data to map
+"""
+dic = {}
 for line in data[1:]:
 	place = line[1].split(None, 2)
-	loc = '{} {}'.format(place[0], place[1])
-	print(loc)
+	name = '{} {}'.format(place[0], place[1])
+	val = re.sub('[($)]', '', line[2])
+	dic[name] = val
+	
+for k, v in dic.items():
+	print(k, v)
 
 
 of = open(outfile, 'w')
