@@ -52,11 +52,29 @@ dic = {}
 for line in data[1:]:
 	place = line[1].split(None, 2)
 	name = '{} {}'.format(place[0], place[1])
+	if "PROVIDENT" in name:
+		continue
 	val = Decimal(re.sub('[($)]', '', line[2]))
+	
 	if name in dic:
 		dic[name] += val
 	else:
 		dic[name] = val
+
+srt = ((k, dic[k]) for k in sorted(dic, key=dic.get, reverse=True))
+"""
+Output
+"""
+with open(outfile, 'w') as of:
+	total = 0
+	for k, v in srt:
+		total += v
+		print('{} --> {}'.format(k, v))
+		of.write('{} --> ${}\n'.format(k, v))
+	print('Total spent: {}'.format(total))
+	of.write('Total spent: {}'.format(str(total)))
+of.close()
 	
-for k, v in dic.items():
-	print('{} --> {}'.format(k, v))
+	
+	
+	
