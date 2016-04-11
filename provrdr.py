@@ -7,6 +7,7 @@ import argparse
 import sys
 import csv
 import re
+from decimal import *
 
 """
 Parse command line arguments
@@ -44,14 +45,18 @@ except IOError:
 Process data to map
 """
 dic = {}
+
 for line in data[1:]:
 	place = line[1].split(None, 2)
 	name = '{} {}'.format(place[0], place[1])
-	val = re.sub('[($)]', '', line[2])
-	dic[name] = val
+	val = Decimal(re.sub('[($)]', '', line[2]))
+	if name in dic:
+		dic[name] += val
+	else:
+		dic[name] = val
 	
 for k, v in dic.items():
-	print(k, v)
+	print('{} --> {}'.format(k, v))
 
 
 of = open(outfile, 'w')
