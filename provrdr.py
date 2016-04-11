@@ -58,10 +58,3 @@ for line in data[1:]:
 for k, v in dic.items():
 	print('{} --> {}'.format(k, v))
 
-
-of = open(outfile, 'w')
-#of.write(str(data))
-for rw in data[1:]:
-	of.write('{} \n'.format(rw))
-of.close
-
