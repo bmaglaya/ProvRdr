@@ -42,9 +42,15 @@ except IOError:
 
 print(data)
 
+for line in data[1:]:
+	place = line[1].split(None, 2)
+	loc = '{} {}'.format(place[0], place[1])
+	print(loc)
+
+
 of = open(outfile, 'w')
 #of.write(str(data))
-for rw in data:
+for rw in data[1:]:
 	of.write('{} \n'.format(rw))
 of.close
 
