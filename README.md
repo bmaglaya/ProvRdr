@@ -13,7 +13,4 @@ through download on their website http://www.providentcu.org/.
 Using "provrdr.py infile.cvs" on the command line will filter through the statement and output 
 vendor -> total expenses paid to this vendor.
 
-TODO:
-- Handle transactions made with ProvidentCU
-- Total expenses for month
-
+usage: provrdr.py [-h] infile [outfile]
