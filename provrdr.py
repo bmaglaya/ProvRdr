@@ -57,4 +57,3 @@ for line in data[1:]:
 	
 for k, v in dic.items():
 	print('{} --> {}'.format(k, v))
-
