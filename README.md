@@ -1,9 +1,5 @@
 ProvRdr
 
-Author: Blase Maglaya
-
-Email: blasemaglaya@gmail.com
-
 Built with Python 3.5.1 on Windows 7
 
 provrdr.py reads in a ProvidentCU bank statement and reports total expenses for every vendor.
